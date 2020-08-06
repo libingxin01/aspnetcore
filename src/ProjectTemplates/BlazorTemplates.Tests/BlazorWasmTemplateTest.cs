@@ -477,7 +477,7 @@ namespace Templates.Test
 
             Assert.True(0 == createResult.ExitCode, ErrorMessages.GetFailedProcessMessage("create/restore", project, createResult));
 
-            var publishResult = await project.RunDotNetPublishAsync();
+            var publishResult = await project.RunDotNetPublishAsync(additionalArgs: "/p:TreatWarningsAsErrors=false /p:WarningsAsErrors=''");
             Assert.True(0 == publishResult.ExitCode, ErrorMessages.GetFailedProcessMessage("publish", project, publishResult));
 
             // Run dotnet build after publish. The reason is that one uses Config = Debug and the other uses Config = Release
